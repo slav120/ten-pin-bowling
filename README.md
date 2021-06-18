@@ -12,13 +12,12 @@ Tooling:
 
 ## TODO
 
--   Husky addition
 -   CI template
 -   Server / deployment template
 -   Mockup routes
 -   Dependency bot howto
 -   Documentation improvement
--   Cleanup references to past projects (randomcrush, rabbitsdeals, rabbitsreviews)
+-   Cleanup references to past projects (rabbitsdeals, rabbitsreviews)
 
 # Best practices
 
@@ -29,9 +28,9 @@ Tooling:
 -   Do not use `eslint ignore` directives unless unavoidable
 -   Run `npm run build` locally before creating a pull request to validate that the project builds
 -   Files
--           Types should be seperated into individual structures and imported into the functions
--           Reuse functions whenever possible
--           Refactor existing code instead of adding new when possible
+-               Types should be seperated into individual structures and imported into the functions
+-               Reuse functions whenever possible
+-               Refactor existing code instead of adding new when possible
 -   Route names should be in the plurial form (sites, categories, tags, performers)
 -   When entities will be reused by multiple routes separate them
 
