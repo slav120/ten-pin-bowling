@@ -28,11 +28,14 @@ Tooling:
 -   Do not use `eslint ignore` directives unless unavoidable
 -   Run `npm run build` locally before creating a pull request to validate that the project builds
 -   Files
--                       Types should be seperated into individual structures and imported into the functions
--                       Reuse functions whenever possible
--                       Refactor existing code instead of adding new when possible
+-                         Types should be seperated into individual structures and imported into the functions
+-                         Reuse functions whenever possible
+-                         Refactor existing code instead of adding new when possible
 -   Route names should be in the plurial form (sites, categories, tags, performers)
 -   When entities will be reused by multiple routes separate them
+-   Never commit/push to main/qc directly
+-   Always use the ? opperator when making a querry to prevent users pushings scripts
+-   Keep common routes / functions in one file to prevent overcrowding
 
 ## Installation
 
@@ -80,3 +83,7 @@ database=XXX
 -   [Setting up a CI/CD pipeline on AWS](https://levelup.gitconnected.com/setup-a-ci-cd-pipeline-to-deploy-node-js-application-to-aws-95635b15675b)
 
 ## Usage
+
+Here would be the list of all routes and how to use / what if they return
+
+> /v1/example/{name} This route takes a name as a param and then displays Hello {name}!
