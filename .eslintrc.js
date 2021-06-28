@@ -30,6 +30,8 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 'off',
         'simple-import-sort/imports': 'error',
         '@typescript-eslint/no-var-requires': 0,
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
         'jsx-a11y/anchor-is-valid': [
             'error',
             {
