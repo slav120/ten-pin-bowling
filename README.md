@@ -28,14 +28,15 @@ Tooling:
 -   Do not use `eslint ignore` directives unless unavoidable
 -   Run `npm run build` locally before creating a pull request to validate that the project builds
 -   Files
--                         Types should be seperated into individual structures and imported into the functions
--                         Reuse functions whenever possible
--                         Refactor existing code instead of adding new when possible
+-                           Types should be seperated into individual structures and imported into the functions
+-                           Reuse functions whenever possible
+-                           Refactor existing code instead of adding new when possible
 -   Route names should be in the plurial form (sites, categories, tags, performers)
 -   When entities will be reused by multiple routes separate them
 -   Never commit/push to main/qc directly
 -   Always use the ? opperator when making a querry to prevent users pushings scripts
--   Keep common routes / functions in one file to prevent overcrowding
+-   The models should hold all the logic, your querry etc inside of a function (Keep the functions reusable and easy to use so you can inport them in multiple routes if needed)
+-   The routes should only keep the route path and function calls you have created in the models to return their results
 
 ## Installation
 
