@@ -82,13 +82,6 @@ app.use(function onError(err, req, res, next) {
     res.statusCode = 500;
     res.end(res.sentry + '\n');
 });
-// ////////////////////////////
-// // start the express server
-// app.listen(port, () => {
-//     // tslint:disable-next-line:no-console
-//     console.log(`server started at http://localhost:${port}`);
-// });
-//////////////////////////////////////
 if (cluster.isMaster) {
     for (let i = 0; i < numCPUs; i++) {
         // Create a worker
