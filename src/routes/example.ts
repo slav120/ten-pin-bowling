@@ -12,6 +12,10 @@ export const register = (app: express.Application, pool: any) => {
             newGame = [];
             frameCount = 0;
             res.json({ Message: 'Starting new game ! ' }).status(200);
+        } else if (frameCount === 11) {
+            newGame = [];
+            frameCount = 0;
+            res.json({ Message: 'Starting new game ! ' }).status(200);
         } else {
             res.json({ Message: "Oups ! Looks like the last game hasn't finished yet " }).status(400);
         }
@@ -33,8 +37,24 @@ export const register = (app: express.Application, pool: any) => {
             newroll.spare = newroll?.firstRoll + newroll?.secondRoll === 10 && newroll.strike !== 1 ? (newroll.spare = 1) : 0;
             newroll.score = newroll.strike || newroll.spare ? null : newroll.firstRoll + newroll.secondRoll + totalScore;
             totalScore += newroll.strike || newroll.spare ? 0 : newroll.firstRoll + newroll.secondRoll;
+            newGame.push(newroll);
+
+            newGame.forEach(function (keys: any, index: any) {
+                if (!keys.score) {
+                    if (keys.spare && newGame[index + 1]) {
+                        keys.score = newGame[index - 1]?.score + 10 + newGame[index + 1]?.firstRoll;
+                        newroll.score += keys?.score - newGame[index - 1]?.score;
+                        totalScore = newroll?.score;
+                    }
+                    if (keys.strike && newGame[index + 1]) {
+                        keys.score =
+                            newGame[index - 1]?.score + 10 + newGame[index + 1]?.firstRoll + newGame[index + 1]?.secondRoll;
+                        newroll.score += keys?.score - newGame[index - 1]?.score;
+                        totalScore = newroll?.score;
+                    }
+                }
+            });
         }
-        newGame.push(newroll);
         return res.json({ newGame, totalScore });
     });
 };
