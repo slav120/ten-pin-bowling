@@ -2,7 +2,7 @@ import * as express from 'express';
 
 import { randomNumber } from '../helpers/randomNumber';
 
-export const register = (app: express.Application, pool: any) => {
+export const register = (app: express.Application) => {
     let newGame: any = null;
     let frameCount: any = null;
     let totalScore = 0;
