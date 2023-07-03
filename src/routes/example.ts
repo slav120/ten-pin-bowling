@@ -43,20 +43,17 @@ export const register = (app: express.Application, pool: any) => {
 
             newGame.forEach(function (keys: any, index: any) {
                 if (!keys.score) {
-                    if (keys.spare && newGame[index + 1]) {
+                    keys.score = 0;
+                    if (keys.spare && newGame[index + 1] && !newGame.spare) {
                         keys.score = newGame[index - 1]?.score + 10 + newGame[index + 1]?.firstRoll;
-                        newroll.score += keys.score - newGame[index - 1].score;
+                        newroll.score = keys.score + newGame[index + 1].firstRoll + newGame[index + 1].secondRoll;
                         totalScore = newroll.score;
-                        console.log(newroll.score);
-                        console.log(totalScore);
                     }
-                    if (keys.strike && newGame[index + 1]) {
+                    if (keys.strike && newGame[index + 1] && !newGame.strike) {
                         keys.score =
                             newGame[index - 1]?.score + 10 + newGame[index + 1]?.firstRoll + newGame[index + 1]?.secondRoll;
-                        newroll.score += keys.score - newGame[index - 1].score;
+                        newroll.score = keys.score + newGame[index + 1].firstRoll + newGame[index + 1].secondRoll;
                         totalScore = newroll.score;
-                        console.log(newroll.score);
-                        console.log(totalScore);
                     }
                 }
             });
