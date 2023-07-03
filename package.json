@@ -29,6 +29,9 @@
         "memory-cache": "^0.2.0",
         "mysql2": "^2.2.5",
         "pluralize": "^8.0.0",
+        "random": "^4.1.0",
+        "random-int": "^3.0.0",
+        "random-number": "^0.0.9",
         "xss-clean": "^0.1.1"
     },
     "devDependencies": {

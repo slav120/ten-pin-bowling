@@ -33,9 +33,6 @@ const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
-
 app.use(cors());
 // initialize configuration
 dotenv.config();
@@ -51,7 +48,6 @@ const limit = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 Hour
     message: 'Too many requests' // message to send
 });
-app.use('/v1/example/:slug', limit); // Setting limit on search route
 
 // GZIP all assets to minimize size on response
 app.use(compression());
@@ -73,16 +69,7 @@ app.use(function onError(err: any, req: any, res: any, next: any) {
     res.end(res.sentry + '\n');
 });
 
-if (cluster.isMaster) {
-    for (let i = 0; i < numCPUs; i++) {
-        // Create a worker
-        cluster.fork();
-    }
-} else {
-    // Workers share the TCP connection in this server
-    // All workers use this port
-    app.listen(port, () => {
-        // tslint:disable-next-line:no-console
-        console.log(`server started at http://localhost:${port}`);
-    });
-}
+app.listen(port, () => {
+    // tslint:disable-next-line:no-console
+    console.log(`server started at http://localhost:${port}`);
+});
