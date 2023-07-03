@@ -11,10 +11,12 @@ export const register = (app: express.Application, pool: any) => {
         if (!newGame) {
             newGame = [];
             frameCount = 0;
+            totalScore = 0;
             res.json({ Message: 'Starting new game ! ' }).status(200);
-        } else if (frameCount === 11) {
+        } else if (frameCount >= 10) {
             newGame = [];
             frameCount = 0;
+            totalScore = 0;
             res.json({ Message: 'Starting new game ! ' }).status(200);
         } else {
             res.json({ Message: "Oups ! Looks like the last game hasn't finished yet " }).status(400);
@@ -43,14 +45,18 @@ export const register = (app: express.Application, pool: any) => {
                 if (!keys.score) {
                     if (keys.spare && newGame[index + 1]) {
                         keys.score = newGame[index - 1]?.score + 10 + newGame[index + 1]?.firstRoll;
-                        newroll.score += keys?.score - newGame[index - 1]?.score;
-                        totalScore = newroll?.score;
+                        newroll.score += keys.score - newGame[index - 1].score;
+                        totalScore = newroll.score;
+                        console.log(newroll.score);
+                        console.log(totalScore);
                     }
                     if (keys.strike && newGame[index + 1]) {
                         keys.score =
                             newGame[index - 1]?.score + 10 + newGame[index + 1]?.firstRoll + newGame[index + 1]?.secondRoll;
-                        newroll.score += keys?.score - newGame[index - 1]?.score;
-                        totalScore = newroll?.score;
+                        newroll.score += keys.score - newGame[index - 1].score;
+                        totalScore = newroll.score;
+                        console.log(newroll.score);
+                        console.log(totalScore);
                     }
                 }
             });
